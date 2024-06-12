@@ -15,6 +15,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import userSchema, { User } from 'src/models/User.model';
 import { GithubCommitController } from './controllers/github/githubCommit.controller';
 import { GithubCommitService } from './services/github/githubCommit.service';
+import { GithubPrController } from './controllers/github/githubPr.controller';
+import { GithubPrService } from './services/github/githubPr.service';
 
 @Module({
   imports: [
@@ -29,8 +31,18 @@ import { GithubCommitService } from './services/github/githubCommit.service';
       },
     ]),
   ],
-  controllers: [GithubController, GithubCrudController, GithubCommitController],
-  providers: [GithubService, GitHubCrudServices, GithubCommitService],
+  controllers: [
+    GithubController,
+    GithubCrudController,
+    GithubCommitController,
+    GithubPrController,
+  ],
+  providers: [
+    GithubService,
+    GitHubCrudServices,
+    GithubCommitService,
+    GithubPrService,
+  ],
 })
 export class GithubModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
